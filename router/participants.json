@@ -1,0 +1,40 @@
+{
+    "participants": [
+      {
+        "hallTicket": "12345",
+        "dob": "2000-05-15",
+        "name": "John Doe",
+        "prize": "1st - Champion",
+        "participationDate": "2024-09-27"
+      },
+      {
+        "hallTicket": "67890",
+        "dob": "2001-07-22",
+        "name": "Jane Smith",
+        "prize": "2nd - Gold",
+        "participationDate": "2024-09-27"
+      },
+      {
+        "hallTicket": "11223",
+        "dob": "1999-08-10",
+        "name": "Alice Brown",
+        "prize": "3rd - Silver",
+        "participationDate": "2024-09-27"
+      },
+      {
+        "hallTicket": "44556",
+        "dob": "2002-09-05",
+        "name": "Bob Green",
+        "prize": "Participant",
+        "participationDate": "2024-09-27"
+      },
+      {
+        "hallTicket": "44596",
+        "dob": "2001-09-05",
+        "name": "Bob Green",
+        "prize": "Participant",
+        "participationDate": "2024-09-27"
+      }
+    ]
+  }
+  
