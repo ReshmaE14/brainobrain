@@ -14,49 +14,51 @@
   
   <style scoped>
   .competition {
-    text-align: center;
-    background-color: rgb(132, 94, 168);
-    color: antiquewhite;
-    padding: 40px;
-    border-radius: 10px;
-  }
-  
-  .competition-links h2 {
-    margin: 20px 0;
-  }
-  
-  .competition-links a {
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 5px;
-    color: white;
-    display: inline-block;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .competition-links a:nth-child(1) {
-    background-color: #FF5733; /* Competition 1 color */
-  }
-  
-  .competition-links a:nth-child(2) {
-    background-color: #33FF57; /* Competition 2 color */
-  }
-  
-  .competition-links a:nth-child(3) {
-    background-color: #3357FF; /* Competition 3 color */
-  }
-  
-  .competition-links a:nth-child(4) {
-    background-color: #FF33A1; /* Competition 4 color */
-  }
-  
-  .competition-links a:nth-child(5) {
-    background-color: #FFC300; /* Competition 5 color */
-  }
-  
-  .competition-links a:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
+  text-align: center;
+  background-color: rgb(132, 94, 168);
+  color: antiquewhite;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.competition-links h2 {
+  margin: 20px 0;
+}
+
+.competition-links a {
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Use :nth-of-type to target the h2 elements containing the router-link */
+.competition-links h2:nth-of-type(1) a {
+  background-color: #FF5733; /* Competition 1 color */
+}
+
+.competition-links h2:nth-of-type(2) a {
+  background-color: #33FF57; /* Competition 2 color */
+}
+
+.competition-links h2:nth-of-type(3) a {
+  background-color: #3357FF; /* Competition 3 color */
+}
+
+.competition-links h2:nth-of-type(4) a {
+  background-color: #FF33A1; /* Competition 4 color */
+}
+
+.competition-links h2:nth-of-type(5) a {
+  background-color: #FFC300; /* Competition 5 color */
+}
+
+.competition-links a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
   </style>
   
