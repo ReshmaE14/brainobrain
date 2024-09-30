@@ -15,7 +15,7 @@
 
     <!-- Social Share Section at Bottom -->
     <div class="social-share">
-      <h1>Share This Page</h1>
+      <!-- <h1>Share This Page</h1> -->
 
       <div class="social-icons">
         <!-- Facebook -->
@@ -139,12 +139,28 @@ export default {
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 .certificate-page {
+  position: relative; /* Make sure the container is positioned */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(152, 121, 181);
+  /* background-color: rgb(152, 121, 181);  */
+}
+
+.certificate-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/public/last.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 80%; /* Set the initial opacity of the background image */
+  z-index: -1; /* Place the background behind the content */
 }
 
 .certificate-container {

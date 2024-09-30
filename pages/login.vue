@@ -105,9 +105,18 @@ export default {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Fallback background color */
+  background-image: url('public/baby.jpg'); /* Replace with the actual path to your image */
+  background-size: cover; /* Make the image cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
   border-radius: 8px;
+  opacity: 100%;
+  color: #ffffff;
 }
+
+
+
 .form-group {
   margin-bottom: 20px;
 }
