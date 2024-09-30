@@ -8,13 +8,14 @@
         <p>Prize: {{ prize }}</p>
         <p>Date of Participation: {{ participationDate }}</p>
       </div>
+      <title>certificate</title>
     </div>
 
     <button @click="downloadCertificate">Download Certificate</button>
 
     <!-- Social Share Section at Bottom -->
     <div class="social-share">
-      <h1>Share this page</h1>
+      <h1>Share This Page</h1>
 
       <div class="social-icons">
         <!-- Facebook -->
@@ -27,14 +28,14 @@
           <i class="fab fa-facebook"></i>
         </a>
 
-        <!-- Twitter -->
+        <!-- X (replacing Twitter) -->
         <a
-          :href="twitterShareUrl"
+          :href="xShareUrl"
           target="_blank"
-          class="social-icon twitter"
-          aria-label="Share on Twitter"
+          class="social-icon x-logo"
+          aria-label="Share on X"
         >
-          <i class="fab fa-twitter"></i>
+          <font-awesome-icon :icon="['fab', 'x-twitter']" />
         </a>
 
         <!-- LinkedIn -->
@@ -61,10 +62,20 @@
   </div>
 </template>
 
+
 <script>
 import html2canvas from "html2canvas";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+// Add Font Awesome icons to the library
+library.add(faXTwitter)
 
 export default {
+  components: {
+    FontAwesomeIcon
+  },
   data() {
     return {
       name: this.$route.query.name || "",
@@ -81,8 +92,8 @@ export default {
         this.currentUrl
       )}`;
     },
-    twitterShareUrl() {
-      return `https://twitter.com/intent/tweet?text=Check out this awesome certificate!&url=${encodeURIComponent(
+    xShareUrl() {
+      return `https://x.com/intent/tweet?text=Check out this awesome certificate!&url=${encodeURIComponent(
         this.currentUrl
       )}`;
     },
@@ -97,19 +108,32 @@ export default {
       )}`;
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.updateMetaTags();
+    });
+  },
   methods: {
-    downloadCertificate() {
-      const certificateElement = document.getElementById("certificate");
-      html2canvas(certificateElement).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "certificate.png";
-        link.click();
-      });
+    updateMetaTags() {
+      const titleMeta = document.querySelector('meta[property="og:title"]');
+      const descriptionMeta = document.querySelector('meta[property="og:description"]');
+      const urlMeta = document.querySelector('meta[property="og:url"]');
+
+      // Check if the meta tags exist before setting attributes
+      if (titleMeta) {
+        titleMeta.setAttribute("content", `Certificate of Achievement for ${this.name}`);
+      }
+      if (descriptionMeta) {
+        descriptionMeta.setAttribute("content", `Congratulations to ${this.name} for achieving the ${this.prize} prize!`);
+      }
+      if (urlMeta) {
+        urlMeta.setAttribute("content", this.currentUrl);
+      }
     },
   },
 };
 </script>
+
 
 <style scoped>
 @import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -150,6 +174,7 @@ export default {
 
 .certificate-details p {
   margin: 5px 0;
+  font-size: 20px;
 }
 
 button {
@@ -167,9 +192,6 @@ button:hover {
 }
 
 /* social media */
-
-
-/* Social Share Section Styles */
 .social-share {
   margin-top: 40px;
   text-align: center;
@@ -182,18 +204,18 @@ button:hover {
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 15px; /* Adjusted gap between icons */
+  gap: 15px;
   margin-top: 20px;
 }
 
 .social-icon {
-  font-size: 27px; /* Reduced font size */
+  font-size: 27px;
   color: white;
   text-decoration: none;
-  padding: 8px; /* Reduced padding */
+  padding: 8px;
   border-radius: 50%;
-  width: 40px; /* Reduced width */
-  height: 40px; /* Reduced height */
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,8 +225,8 @@ button:hover {
   background-color: #4267b2;
 }
 
-.social-icon.twitter {
-  background-color: #1da1f2;
+.social-icon.x-logo {
+  background-color: #000000;
 }
 
 .social-icon.linkedin {
@@ -291,3 +313,5 @@ button:hover {
 
 }
 </style>
+
+
