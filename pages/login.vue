@@ -1,5 +1,8 @@
-<template>
-  <div class="login-page">
+<template >
+<div class="logintemo">
+
+
+  <div class="login-page" style="color: blue;">
     <h1>Login for Competition {{ competition }}</h1>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
@@ -29,6 +32,7 @@
       <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -101,18 +105,35 @@ export default {
 </script>
 
 <style scoped>
+
+
+
+.logintemo {
+  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/public/home1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  
+}
+
 .login-page {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0; /* Fallback background color */
-  background-image: url('public/baby.jpg'); /* Replace with the actual path to your image */
-  background-size: cover; /* Make the image cover the entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  border-radius: 8px;
+  background-color: #fcf9f9; /* Fallback background color */
+ 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   opacity: 100%;
-  color: #ffffff;
+  color: #171717;
 }
 
 
