@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     currentUrl() {
-      return window.location.href;
+      return `"{window.location.href}`;
     },
     facebookShareUrl() {
       return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -114,6 +114,18 @@ export default {
     });
   },
   methods: {
+
+    downloadCertificate() {
+      const certificate = document.getElementById("certificate");
+      html2canvas(certificate, { scale: 2 }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "certificate.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    },
+
+
     updateMetaTags() {
       const titleMeta = document.querySelector('meta[property="og:title"]');
       const descriptionMeta = document.querySelector('meta[property="og:description"]');

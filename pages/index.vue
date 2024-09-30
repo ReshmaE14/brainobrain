@@ -18,7 +18,7 @@ import "./index.css";
         content="Check out this awesome certificate from Brainobrain!"
       />
       <meta property="og:image" content="/path/to/certificate-image.jpg" />
-      <meta property="og:url" content="https://yourwebsite.com/certificate" />
+      <meta property="og:url" content="https://brainobrain-mauve.vercel.app/" />
       <meta property="og:type" content="website" />
 
       <!-- Twitter Card Meta Tags -->
