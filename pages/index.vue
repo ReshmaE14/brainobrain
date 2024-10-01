@@ -51,7 +51,7 @@
               :to="{ path: '/login', query: { competition: competition.id } }"
               class="btn btn-primary"
             >
-              Login in {{ competition.id }}
+              Login {{ competition.id }}
             </router-link>
           </div>
         </div>
