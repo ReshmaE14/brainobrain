@@ -1,50 +1,129 @@
-
-.competition {
+/* Background Styling */
+.background {
   min-height: 100vh;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2); /* Subtle gradient background */
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('/public/home1.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  padding: 30px;
 }
 
-.competition-links h2 {
-  margin: 20px 0;
+/* Poster (Card-Like) Styling */
+.poster {
+  background-color: white; /* Clean white background for the poster */
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Shadow to make the poster pop */
+  padding: 40px;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* Add a hover effect and animation for button styles */
-.custom-btn {
-  padding: 15px 30px;
-  border-radius: 8px;
-  font-size: 18px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+/* Poster Header */
+.poster-header h1 {
+  /* font-size: 2.5rem; */
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.custom-btn:hover {
-  transform: scale(1.05);
-  color: white;
+.poster-header p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Poster Body */
+.poster-body {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left Side: Poster Image */
+.poster-image img {
+  width: 350px;
+  height: auto;
+  border-radius: 10px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-success:hover {
-  background-color: #282aa7;
+/* Right Side: Content & Buttons */
+.poster-content {
+  max-width: 600px;
 }
 
-.btn-danger:hover {
+.poster-content h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.poster-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Competition Buttons */
+.competition-buttons {
+  display: flex;
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.custom-btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  min-width: 150px;
+  transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+.custom-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+/* Button Colors */
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-danger {
   background-color: #dc3545;
 }
 
-.btn-warning:hover {
+.btn-warning {
   background-color: #ffc107;
 }
 
-.btn-info:hover {
+.btn-info {
   background-color: #17a2b8;
 }
 
-.btn-primary:hover {
-  background-color: #007bff;
+.btn-success {
+  background-color: #28a745;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .poster-body {
+    flex-direction: column;
+  }
+
+  .poster-image img {
+    width: 100%;
+  }
+
+  .competition-buttons {
+    flex-direction: column;
+  }
 }

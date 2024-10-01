@@ -85,8 +85,9 @@ export default {
   },
   computed: {
     currentUrl() {
-      return `"{window.location.href}`;
+      return window.location.href;
     },
+
     facebookShareUrl() {
       return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         this.currentUrl
