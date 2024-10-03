@@ -14,7 +14,7 @@
 <!-- Open Graph Meta Tags -->
 <meta property="og:title" content="Certificate of Achievement" />
     <meta property="og:description" content="Check out this awesome certificate from Brainobrain!" />
-    <meta property="og:image" content="https://asset.cloudinary.com/dx7k0yowh/39685ad819ea9f78afd64c84c3f83cc6 " />
+    <meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727777985/certificate_mz20zm.png" />
     <meta property="og:url" content="https://brainobrain-mauve.vercel.app/" />
     <meta property="og:type" content="website" />
    
