@@ -7,18 +7,18 @@
     </div>
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Certificate of Achievement" />
-    <meta property="og:description" content="Check out this awesome certificate from Brainobrain!" />
-    <meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727777985/certificate_mz20zm.png" />
+    <meta property="og:title" content="Certificate of your Achievement" />
+    <meta property="og:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly"/>
+    <meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png" />
     <meta property="og:url" content="https://brainobrain-mauve.vercel.app/" />
     <meta property="og:type" content="website" />
    
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Certificate of Achievement" />
-    <meta name="twitter:description" content="Check out this awesome certificate from Brainobrain!" />
-    <meta name="twitter:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727777985/certificate_mz20zm.png"/>
+    <meta name="twitter:title" content="Certificate of your Achievement" />
+    <meta name="twitter:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly" />
+    <meta name="twitter:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png"/>
 
     <!-- Cards Row -->
     <div class="row">
