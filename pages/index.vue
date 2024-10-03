@@ -9,7 +9,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Certificate of Achievement" />
     <meta property="og:description" content="Check out this awesome certificate from Brainobrain!" />
-    <meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727777985/certificate_mz20zm.png" />
+    <meta property="og:image" content="https://asset.cloudinary.com/dx7k0yowh/39685ad819ea9f78afd64c84c3f83cc6 " />
     <meta property="og:url" content="https://brainobrain-mauve.vercel.app/" />
     <meta property="og:type" content="website" />
    
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Certificate of Achievement" />
     <meta name="twitter:description" content="Check out this awesome certificate from Brainobrain!" />
-    <meta name="twitter:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727777985/certificate_mz20zm.png"/>
+    <meta name="twitter:image" content="https://asset.cloudinary.com/dx7k0yowh/39685ad819ea9f78afd64c84c3f83cc6 "/>
 
     <!-- Cards Row -->
     <div class="row">
@@ -44,7 +44,7 @@
             </div>
             <div v-else>
               <button class="btn btn-secondary" @click="resultNotFound(competition.name)">
-                Result not found
+                Result not Published
               </button>
             </div>
           </div>
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     resultNotFound(competitionName) {
-      alert(`Result not found for ${competitionName}.`);
+      (`Result not found for ${competitionName}.`);
     }
   }
 };
