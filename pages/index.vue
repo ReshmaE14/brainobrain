@@ -6,19 +6,26 @@
       <p>Join our competitions to develop your skills and win certificates of achievement!</p>
     </div>
 
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Certificate of your Achievement" />
-    <meta property="og:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly"/>
-    <meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png" />
-    <meta property="og:url" content="https://brainobrain-mauve.vercel.app/" />
-    <meta property="og:type" content="website" />
-   
+    <!-- HTML Meta Tags -->
+<title>Certificate of your Achievement</title>
+<meta name="description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly">
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Certificate of your Achievement" />
-    <meta name="twitter:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly" />
-    <meta name="twitter:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png"/>
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://brainobrain-mauve.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Certificate of your Achievement">
+<meta property="og:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly">
+<meta property="og:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="brainobrain-mauve.vercel.app">
+<meta property="twitter:url" content="https://brainobrain-mauve.vercel.app/">
+<meta name="twitter:title" content="Certificate of your Achievement">
+<meta name="twitter:description" content="Check out this awesome certificate from Brainobrain! wishing you very all the best ... and join us regularly">
+<meta name="twitter:image" content="https://res.cloudinary.com/dx7k0yowh/image/upload/v1727947841/certificate_cloud_h2w1n6.png">
+
+<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
     <!-- Cards Row -->
     <div class="row">
