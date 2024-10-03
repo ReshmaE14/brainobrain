@@ -2,7 +2,7 @@
   <div class="container text-center py-5">
     <!-- Certificate Container -->
     <div class="certificate-container position-relative mx-auto" id="certificate">
-      <img class="certificate-img" src="/certificate.png" alt="Certificate">
+      <img class="certificate-img" src="/certificate.png" alt="Certificate" />
       <div class="certificate-details position-absolute text-center">
         <h4>Brainobrain Skill Development Programme</h4>
         <h2>{{ name }}</h2>
@@ -10,9 +10,6 @@
         <p>Date of Participation: {{ participationDate }}</p>
       </div>
     </div>
-
-
-
 
     <!-- Download Button -->
     <button class="btn btn-success my-4" @click="downloadCertificate">Download Certificate</button>
@@ -32,9 +29,9 @@
         <a :href="linkedinShareUrl" target="_blank" class="btn btn-info" aria-label="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
-        <!-- WhatsApp -->
-        <a :href="whatsappShareUrl" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp">
-          <i class="fab fa-whatsapp"></i>
+        <!-- WhatsApp (this will show only if the share URL is ready) -->
+        <a :href="whatsappShareUrl" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp" v-if="whatsappShareUrl">
+          <font-awesome-icon :icon="['fab', 'whatsapp']" />
         </a>
       </div>
     </div>
@@ -43,22 +40,23 @@
 
 <script>
 import html2canvas from "html2canvas";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faXTwitter } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faXTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Add Font Awesome icons to the library
-library.add(faXTwitter)
+library.add(faXTwitter, faWhatsapp);
 
 export default {
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   data() {
     return {
       name: this.$route.query.name || "",
       prize: this.$route.query.prize || "",
       participationDate: this.$route.query.participationDate || "",
+      whatsappShareUrl: "", // Dynamically updated after upload
     };
   },
   computed: {
@@ -74,25 +72,51 @@ export default {
     linkedinShareUrl() {
       return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.currentUrl)}`;
     },
-    whatsappShareUrl() {
-      return `https://api.whatsapp.com/send?text=Check out this awesome certificate! ${encodeURIComponent(this.currentUrl)}`;
-    },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.updateMetaTags();
-    });
   },
   methods: {
     downloadCertificate() {
       const certificate = document.getElementById("certificate");
-      html2canvas(certificate, { scale: 2 }).then(canvas => {
+      html2canvas(certificate, { scale: 2 }).then((canvas) => {
+        // Convert canvas to base64 image format
+        const imageBase64 = canvas.toDataURL("image/png");
+
+        // Download the certificate locally
         const link = document.createElement("a");
+        link.href = imageBase64;
         link.download = "certificate.png";
-        link.href = canvas.toDataURL("image/png");
         link.click();
+
+        // Upload the image to the server (e.g., Cloudinary) for WhatsApp sharing
+        this.uploadImageToServer(imageBase64);
       });
     },
+
+    updateWhatsAppShareUrl(imageBase64) {
+      const formData = new FormData();
+      formData.append("file", imageBase64);
+      formData.append("upload_preset", "YOUR_CLOUDINARY_UPLOAD_PRESET"); // For Cloudinary
+      formData.append("cloud_name", "YOUR_CLOUDINARY_CLOUD_NAME");
+
+      // Replace the URL with your backend endpoint
+      fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUDINARY_CLOUD_NAME/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Once the image is uploaded, use the returned URL in the WhatsApp share link
+          this.updateWhatsAppShareUrl(data.secure_url);
+        })
+        .catch((error) => {
+          console.error("Error uploading image:", error);
+        });
+    },
+
+    updateWhatsAppShareUrl(imageUrl) {
+      const message = `Check out my certificate! ${imageUrl}`;
+      this.whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    },
+
     updateMetaTags() {
       const titleMeta = document.querySelector('meta[property="og:title"]');
       const descriptionMeta = document.querySelector('meta[property="og:description"]');
