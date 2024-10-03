@@ -4,7 +4,7 @@
       <!-- Login Form -->
       <div class="col-md-3 d-flex justify-content-center">
         <div class="login-page">
-          <h2 class="text-center">Login for Competition {{ competition }}</h2>
+          <h2 class="text-center">Login {{ competition }}</h2>
           <form @submit.prevent="handleSubmit">
             <div class="form-group">
               <label for="hallTicket">Hall Ticket Number</label>
