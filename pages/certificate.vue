@@ -29,7 +29,7 @@
         <a :href="linkedinShareUrl" target="_blank" class="btn btn-info" aria-label="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
-        <!-- WhatsApp (this will show only if the share URL is ready) -->
+        <!-- WhatsApp -->
         <a :href="whatsappShareUrl" target="_blank" class="btn btn-success" aria-label="Share on WhatsApp" v-if="whatsappShareUrl">
           <font-awesome-icon :icon="['fab', 'whatsapp']" />
         </a>
@@ -56,7 +56,8 @@ export default {
       name: this.$route.query.name || "",
       prize: this.$route.query.prize || "",
       participationDate: this.$route.query.participationDate || "",
-      whatsappShareUrl: "", // Dynamically updated after upload
+      linkedinShareUrl: "",
+      whatsappShareUrl: "",
     };
   },
   computed: {
@@ -69,78 +70,65 @@ export default {
     xShareUrl() {
       return `https://x.com/intent/tweet?text=Check out this awesome certificate!&url=${encodeURIComponent(this.currentUrl)}`;
     },
-    linkedinShareUrl() {
-      return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.currentUrl)}`;
-    },
+  },
+  mounted() {
+    this.generateAndUploadCertificate();
   },
   methods: {
-    downloadCertificate() {
+    generateAndUploadCertificate() {
       const certificate = document.getElementById("certificate");
       html2canvas(certificate, { scale: 2 }).then((canvas) => {
-        // Convert canvas to base64 image format
         const imageBase64 = canvas.toDataURL("image/png");
 
-        // Download the certificate locally
-        const link = document.createElement("a");
-        link.href = imageBase64;
-        link.download = "certificate.png";
-        link.click();
-
-        // Upload the image to the server (e.g., Cloudinary) for WhatsApp sharing
+        // Upload image to Cloudinary or another image hosting service
         this.uploadImageToServer(imageBase64);
       });
     },
 
-    updateWhatsAppShareUrl(imageBase64) {
+    uploadImageToServer(imageBase64) {
       const formData = new FormData();
       formData.append("file", imageBase64);
-      formData.append("upload_preset", "YOUR_CLOUDINARY_UPLOAD_PRESET"); // For Cloudinary
-      formData.append("cloud_name", "YOUR_CLOUDINARY_CLOUD_NAME");
+      formData.append("upload_preset", "ml_default"); // Replace with your Cloudinary preset
 
-      // Replace the URL with your backend endpoint
-      fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUDINARY_CLOUD_NAME/image/upload", {
+      fetch("https://api.cloudinary.com/v1_1/dsmyyq7vf/upload", {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
-          // Once the image is uploaded, use the returned URL in the WhatsApp share link
-          this.updateWhatsAppShareUrl(data.secure_url);
+          const imageUrl = data.secure_url;
+
+          // Update LinkedIn and WhatsApp share URLs with the uploaded image URL
+          this.linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(imageUrl)}`;
+          
+          // Constructing the WhatsApp share message
+          const message = ` Congratulations! ${this.name} has received a certificate for ${this.prize} at the Brainobrain Skill Development Programme. Check it out: ${imageUrl}`;
+
+          this.whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
         })
         .catch((error) => {
           console.error("Error uploading image:", error);
         });
     },
 
-    updateWhatsAppShareUrl(imageUrl) {
-      const message = `Check out my certificate! ${imageUrl}`;
-      this.whatsappShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-    },
+    downloadCertificate() {
+      const certificate = document.getElementById("certificate");
+      html2canvas(certificate, { scale: 2 }).then((canvas) => {
+        const imageBase64 = canvas.toDataURL("image/png");
 
-    updateMetaTags() {
-      const titleMeta = document.querySelector('meta[property="og:title"]');
-      const descriptionMeta = document.querySelector('meta[property="og:description"]');
-      const urlMeta = document.querySelector('meta[property="og:url"]');
-
-      if (titleMeta) {
-        titleMeta.setAttribute("content", `Certificate of Achievement for ${this.name}`);
-      }
-      if (descriptionMeta) {
-        descriptionMeta.setAttribute("content", `Congratulations to ${this.name} for achieving the ${this.prize} prize!`);
-      }
-      if (urlMeta) {
-        urlMeta.setAttribute("content", this.currentUrl);
-      }
+        const link = document.createElement("a");
+        link.href = imageBase64;
+        link.download = "certificate.png";
+        link.click();
+      });
     },
   },
 };
 </script>
 
 <style scoped>
-/* FontAwesome Import */
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
-/* Certificate Container Styling */
 .certificate-container {
   max-width: 600px;
   width: 100%;
@@ -173,13 +161,11 @@ export default {
   font-size: 1.2rem;
 }
 
-/* Button Styles */
 button {
   padding: 10px 20px;
   font-size: 1.1rem;
 }
 
-/* Social Share Buttons */
 .social-share .btn {
   font-size: 24px;
   width: 50px;
@@ -194,7 +180,6 @@ button {
   opacity: 0.8;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
   .certificate-details h2 {
     font-size: 1.8rem;
@@ -211,9 +196,11 @@ button {
   .certificate-details h4 {
     font-size: 1.3rem;
   }
+
   .certificate-details h2 {
     font-size: 1.4rem;
   }
+
   .certificate-details p {
     font-size: 1rem;
   }
@@ -223,9 +210,11 @@ button {
   .certificate-details h4 {
     font-size: 1.2rem;
   }
+
   .certificate-details h2 {
     font-size: 1.2rem;
   }
+
   .certificate-details p {
     font-size: 0.9rem;
   }
