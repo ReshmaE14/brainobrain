@@ -26,7 +26,7 @@
           <font-awesome-icon :icon="['fab', 'x-twitter']" />
         </a>
         <!-- LinkedIn -->
-        <a :href="linkedinShareUrl" target="_blank" class="btn btn-info" aria-label="Share on LinkedIn">
+        <a :href="linkedinShareUrl" target="_blank" class="btn btn-primary" aria-label="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
         <!-- WhatsApp -->
@@ -46,6 +46,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Add Font Awesome icons to the library
 library.add(faXTwitter, faWhatsapp);
+
 
 export default {
   components: {
@@ -98,12 +99,15 @@ export default {
         .then((data) => {
           const imageUrl = data.secure_url;
 
-          // Update LinkedIn and WhatsApp share URLs with the uploaded image URL
-          this.linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(imageUrl)}`;
-          
-          // Constructing the WhatsApp share message
-          const message = ` Congratulations! ${this.name} has received a certificate for ${this.prize} at the Brainobrain Skill Development Programme. Check it out: ${imageUrl}`;
+          // Define LinkedIn title and description
+          const linkedinTitle = `Brainobrain Skill Development Certificate`;
+          const linkedinDescription = `${this.name} has been awarded the ${this.prize} at the Brainobrain Skill Development Programme. View the certificate here!`;
 
+          // Update LinkedIn share URL with title, description, and image URL
+          this.linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(imageUrl)}&title=${encodeURIComponent(linkedinTitle)}&summary=${encodeURIComponent(linkedinDescription)}`;
+          
+          // WhatsApp share message
+          const message = `Congratulations! ${this.name} has received a certificate for ${this.prize} at the Brainobrain Skill Development Programme. Check it out: ${imageUrl}`;
           this.whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
         })
         .catch((error) => {
@@ -124,6 +128,9 @@ export default {
     },
   },
 };
+
+
+
 </script>
 
 <style scoped>
