@@ -47,7 +47,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 // Add Font Awesome icons to the library
 library.add(faXTwitter, faWhatsapp);
 
-
 export default {
   components: {
     FontAwesomeIcon,
@@ -59,6 +58,7 @@ export default {
       participationDate: this.$route.query.participationDate || "",
       linkedinShareUrl: "",
       whatsappShareUrl: "",
+      xShareUrl: "",
     };
   },
   computed: {
@@ -67,9 +67,6 @@ export default {
     },
     facebookShareUrl() {
       return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.currentUrl)}`;
-    },
-    xShareUrl() {
-      return `https://x.com/intent/tweet?text=Check out this awesome certificate!&url=${encodeURIComponent(this.currentUrl)}`;
     },
   },
   mounted() {
@@ -99,9 +96,12 @@ export default {
         .then((data) => {
           const imageUrl = data.secure_url;
 
-          // Define LinkedIn title and description
-          const linkedinTitle = `Brainobrain Skill Development Certificate`;
+          // Define the content for sharing
+          const linkedinTitle = "Brainobrain Skill Development Certificate";
           const linkedinDescription = `${this.name} has been awarded the ${this.prize} at the Brainobrain Skill Development Programme. View the certificate here!`;
+          
+          const twitterTitle = `Check out this certificate!`;
+          const twitterDescription = `${this.name} has been awarded the ${this.prize} at the Brainobrain Skill Development Programme.`;
 
           // Update LinkedIn share URL with title, description, and image URL
           this.linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(imageUrl)}&title=${encodeURIComponent(linkedinTitle)}&summary=${encodeURIComponent(linkedinDescription)}`;
@@ -109,6 +109,9 @@ export default {
           // WhatsApp share message
           const message = `Congratulations! ${this.name} has received a certificate for ${this.prize} at the Brainobrain Skill Development Programme. Check it out: ${imageUrl}`;
           this.whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+          // Update X (formerly Twitter) share URL with title, description, and image URL
+          this.xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(twitterTitle)} - ${encodeURIComponent(twitterDescription)}&url=${encodeURIComponent(imageUrl)}`;
         })
         .catch((error) => {
           console.error("Error uploading image:", error);
@@ -128,9 +131,6 @@ export default {
     },
   },
 };
-
-
-
 </script>
 
 <style scoped>
